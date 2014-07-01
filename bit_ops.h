@@ -38,6 +38,16 @@ unsigned count_bits_set(unsigned x)
     return count;
 }
 
+bool parity_check(unsigned x)
+{
+    bool odd = false;
+    while(x) {
+        odd ~= odd;
+        x = clear_last_bit(x);
+    }
+    return odd;
+}
+
 /*
  * In my words, folding over is to find the most significant set bit,
  * and make everything to the right set. E.g.:
