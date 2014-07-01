@@ -5,7 +5,8 @@
 /*
  * Clear the Least Significant Bit
  */
-unsigned clear_last_bit(unsigned x) {
+unsigned clear_last_bit(unsigned x)
+{
     return x & (x-1);
 }
 
@@ -15,17 +16,20 @@ unsigned clear_last_bit(unsigned x) {
  *  lowest_set_bit(1011) = 0001
  *  lowest_set_bit(1010) = 0010
  */
-unsigned lowest_set_bit(unsigned x) {
+unsigned lowest_set_bit(unsigned x)
+{
     return x & ~(x-1);
 }
 
-bool power_of_two(unsigned x){
+bool power_of_two(unsigned x)
+{
     if (!x)
         return false;
     return 0 == (x & (x - 1));
 }
 
-unsigned count_bits_set(unsigned x) {
+unsigned count_bits_set(unsigned x)
+{
     unsigned count = 0;
     while(x) {
         x = clear_last_bit(x);
@@ -39,7 +43,8 @@ unsigned count_bits_set(unsigned x) {
  * and make everything to the right set. E.g.:
  *  fold_over(0010000000000000) = 0011111111111111
  */
-unsigned fold_over(unsigned x) {
+unsigned fold_over(unsigned x)
+{
     x |= (x >> 1);
     x |= (x >> 2);
     x |= (x >> 4);
@@ -51,7 +56,8 @@ unsigned fold_over(unsigned x) {
 /*
  * Identify the most significant set bit
  */
-unsigned highest_set_bit(unsigned x) {
+unsigned highest_set_bit(unsigned x)
+{
     x = fold_over(x);
     return (x & ~(x-1));
 }
@@ -59,7 +65,8 @@ unsigned highest_set_bit(unsigned x) {
 /*
  * log_2(x)
  */
-unsigned log_two(unsigned x) {
+unsigned log_two(unsigned x)
+{
     x = x - 1;
     x = fold_over(x);
     x = x + 1;
@@ -69,12 +76,14 @@ unsigned log_two(unsigned x) {
     }
 }
 
-unsigned next_power_of_two(unsigned x) {
+unsigned next_power_of_two(unsigned x)
+{
     x = fold_over(x);
     return (x + 1);
 }
 
-unsigned reverse_bits(unsigned x) {
+unsigned reverse_bits(unsigned x)
+{
     x = ((x & 0xffff0000) >> 16) | ((x & 0x0000ffff) << 16);
     x = ((x & 0xff00ff00) >> 8) | ((x & 0x00ff00ff) << 8);
     x = ((x & 0xf0f0f0f0) >> 4) | ((x & 0x0f0f0f0f) << 4);
@@ -82,7 +91,8 @@ unsigned reverse_bits(unsigned x) {
     return x;
 }
 
-int multiply(int x, int y) {
+int multiply(int x, int y)
+{
     int product = 0;
     while (y) {
         product += x << log_x(lowest_set_bit(y));
