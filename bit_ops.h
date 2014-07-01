@@ -1,8 +1,4 @@
 /*
- * Almost everything in this file comes from the PPAA book
- */
-
-/*
  * Clear the Least Significant Bit
  */
 unsigned clear_last_bit(unsigned x)
